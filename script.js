@@ -57,10 +57,34 @@ d3.csv("driving.csv", d3.autoType).then(data => {
         .attr("stroke-width", 2)
         .attr("fill", "#FFFFFF");
 
-    var node = svg.selectAll("g")
-            .data(data)
-            .enter()
-            .append("g")
+        
+    //     // Add dots
+    //  svg.append('g')
+    //         .selectAll("dot")
+    //         .data(data)
+    //         .enter()
+    //         .append("circle")
+    //         .attr("cx", function (d) { return x(d.miles); } )
+    //         .attr("cy", function (d) { return y(d.gas); } )
+    //         .attr("r", 3)
+    //         .style("fill", "white")
+    //         .attr("stroke", "black")
+
+    // svg.append("text").text(function(d){
+    //             return d.year;
+    //         })
+    //         .attr("x", function (d) {
+    //             return x(d.miles);
+    //         })
+    //         .attr("y", function (d) {
+    //             return y(d.gas);
+    //         });
+
+    var node = svg.append("g")
+        .selectAll("dot")
+        .data(data)
+        .enter()
+        .append("g")
 
     node.append("circle")
         .attr("class", "dot")
@@ -74,8 +98,9 @@ d3.csv("driving.csv", d3.autoType).then(data => {
         .attr("x", function (d) { return x(d.miles); } )
         .attr("y", function (d) { return y(d.gas); } )
         .text(function (d) { return d.year; } )
- 
+        .attr('font-size', '10px')
 
+        
 
     })
         
