@@ -57,33 +57,25 @@ d3.csv("driving.csv", d3.autoType).then(data => {
         .attr("stroke-width", 2)
         .attr("fill", "#FFFFFF");
 
-        // Add dots
-        svg.append('g')
-            .selectAll("dot")
+    var node = svg.selectAll("g")
             .data(data)
             .enter()
-            .append("circle")
-            .attr("cx", function (d) { return x(d.miles); } )
-            .attr("cy", function (d) { return y(d.gas); } )
-            .attr("r", 3)
-            .style("fill", "white")
-            .attr("stroke", "black")
-            .append("text")
-            text((d,i) => {
-                d.year })
+            .append("g")
 
-    //    var labels = svg.selectAll("text")
-    //         .data(data)
-    //         .enter()
-    //         .append("text")
-    //         .attr('x', (d,i) => d.miles)
-    //         .attr('y', (d,i)=>d.gas)
-    //         .
-    //         .attr('dy', -10)
-    //         .attr('text-anchor', "middle")
-    //         .attr('font-size', 10)
+    node.append("circle")
+        .attr("class", "dot")
+        .attr("cx", function (d) { return x(d.miles); } )
+        .attr("cy", function (d) { return y(d.gas); } )
+        .attr("r", 3)
+        .style("fill", "white")
+        .attr("stroke", "black")
 
-        
+    node.append("text")
+        .attr("x", function (d) { return x(d.miles); } )
+        .attr("y", function (d) { return y(d.gas); } )
+        .text(function (d) { return d.year; } )
+ 
+
 
     })
         
